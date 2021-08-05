@@ -1,0 +1,18 @@
+var remove_divs = document.querySelectorAll('.book_detail__content')
+remove_divs.forEach((d) => d.parentNode.removeChild(d))
+
+var book_detail = document.querySelector('[data-id="<%= @book.id %>"]')
+book_detail.classList.add('show')
+
+var div = document.createElement('div')
+div.classList.add('book_detail__content')
+
+div.innerHTML = '<p><strong>Title: </strong><%= @book.title %></p>'
+div.innerHTML += '<p><strong>Isbn: </strong><%= @book.isbn %></p>'
+div.innerHTML += '<p><strong>Author: </strong><%= @book.authors_name %></p>'
+div.innerHTML += '<p><strong>Publisher: </strong><%= @book.publishers_name %></p>'
+div.innerHTML += '<p><strong>Language: </strong><%= @book.language.capitalize %></p>'
+div.innerHTML += '<p><strong>Genre: </strong><%= @book.genre.capitalize %></p>'
+div.innerHTML += '<p><strong>Description: </strong><%= @book.description %></p>'
+
+book_detail.appendChild(div)

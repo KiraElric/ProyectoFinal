@@ -1,0 +1,32 @@
+<div class="col-12 border border-secondary rounded py-2">
+    <article class="media">
+      <div class="align-self-start">
+        <figure class="figure">
+          <img src="http://placehold.jp/64x64.png" class="figure-img img-fluid rounded img-thumbnail" alt="...">
+        </figure>
+      </div>
+      <div class="media-body px-3">
+        <h5 class="mt-0"><%= current_user.fullname %></h5>      
+        <small><%= current_user.email %></small>
+      </div>
+    </article>
+    <div class="icon-link d-flex justify-content-end">
+      <ul class="list-group list-group-horizontal list-unstyled list-inline">
+        <li class="list-group-item list-inline-item">
+          <%= link_to root_path, class: "text-decoration-none text-reset" do %>
+            <span class="icon"><i class="fas fa-book-reader"></i></span>
+          <% end %>
+        </li>
+        <li class="list-group-item list-inline-item">
+          <%= link_to edit_user_registration_path, class: "text-decoration-none text-reset" do %>
+            <span class="icon"><i class="fas fa-user-cog"></i></span>
+          <% end %>
+        </li>
+        <li class="list-group-item list-inline-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: "text-decoration-none text-reset" do %>
+            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>

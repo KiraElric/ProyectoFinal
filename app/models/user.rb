@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :name, :lastname, presence: true
+
+  def fullname
+    "#{name} #{lastname}"
+  end
 end
