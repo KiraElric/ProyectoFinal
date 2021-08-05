@@ -1,0 +1,54 @@
+<div class="col-lg-12 py-2">
+  <%= form_with(model: book) do |form| %>
+    <% if book.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+        <ul>
+          <% book.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title, 'Title', class: 'h5 font-weight-light' %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :isbn, 'ISBN', class: 'h5 font-weight-light' %>
+      <%= form.number_field :isbn, placheholder: 'Write the 13 number of ISBN' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :author_id, 'Author', class: 'h5 font-weight-light' %>
+      <%= form.select :author_id, @authors %>
+    </div>
+
+    <div class="field">
+      <%= form.label :publisher_id, 'Publisher', class: 'h5 font-weight-light' %>
+      <%= form.select :publisher_id, @publishers %>
+    </div>
+
+    <div class="field">
+      <%= form.label :language, 'Language', class: 'h5 font-weight-light' %>
+      <%= form.select :language, @languages %>
+    </div>
+
+    <div class="field">
+      <%= form.label :genre, 'Genre', class: 'h5 font-weight-light' %>
+      <%= form.select :genre, @genres %>
+    </div>
+
+    <div class="field">
+      <%= form.label :description, 'Description', class: 'h5 font-weight-light d-flex align-items-start' %>
+      <%= form.text_area :description, size: '60x6', class: 'rounded', placeholder: 'Write a new description...' %>
+    </div>
+
+    <div class="actions d-flex justify-content-end py-2">
+      <%= form.submit "Save", class: 'btn btn-success'  %>
+    </div>
+  <% end %>
+</div>
