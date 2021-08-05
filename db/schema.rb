@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_233635) do
 
   create_table "books", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "isbn", null: false
+    t.bigint "isbn", null: false
     t.integer "language", default: 0
     t.integer "genre", default: 0
     t.text "description"
