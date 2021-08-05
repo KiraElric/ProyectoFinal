@@ -1,5 +1,5 @@
 <% @books.each do |book| %>
-  <div class="col-12 border border-secondary rounded py-2">
+  <div class="col-12 border border-secondary rounded py-2" data-id="<%= book.id %>">
     <article class="media">
       <div class="align-self-start">
         <figure class="figure">
@@ -9,30 +9,15 @@
       <div class="media-body px-3">
         <h5 class="mt-0"><%= book.title %></h5>       
         <strong class="mt-0">Author: <%= book.authors_name %></strong>
-        <div class="d-flex justify-content-between">
-        <small>Publisher: <%= book.publishers_name %></small>
-        <small>Genre: <%= book.genre %></small>
+        <div class="publisher d-flex justify-content-between">
+          <small>Publisher: <%= book.publishers_name %></small>
+          <small>Genre: <%= book.genre %></small>
         </div>
       </div>
     </article>
     <div class="icon-link d-flex justify-content-end">
-      <ul class="list-group list-group-horizontal list-unstyled list-inline">
-        <li class="list-group-item list-inline-item">
-          <%= link_to book, class: "text-decoration-none text-reset" do %>
-            <span class="icon"><i class="fas fa-book-open"></i></span>
-          <% end %>
-        </li>
-        <li class="list-group-item list-inline-item">
-          <%= link_to edit_book_path(book), class: "text-decoration-none text-reset" do %>
-            <span class="icon"><i class="fas fa-edit"></i></span>
-          <% end %>
-        </li>
-        <li class="list-group-item list-inline-item">
-          <%= link_to book, class: "text-decoration-none text-reset", method: :delete, data: { confirm: 'Are you sure you want to delete this book?' } do %>
-            <span class="icon"><i class="fas fa-trash"></i></span>
-          <% end %>
-        </li>
-      </ul>
+      <%= render 'buttons_links', book: book %>
     </div>
   </div>
 <% end %>
+

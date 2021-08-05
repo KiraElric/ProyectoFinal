@@ -1,0 +1,67 @@
+var div = document.querySelector('#bookList')
+
+var div_book = document.createElement('div')
+div_book.classList.add('col-12', 'border', 'border-secondary', 'rounded', 'py-2')
+div_book.dataset.id = <%= @book.id %>
+
+var article = document.createElement('article')
+article.classList.add('media')
+
+var div_figure = document.createElement('div')
+div_figure.classList.add('align-self-start')
+
+var figure = document.createElement('figure')
+figure.classList.add('figure')
+
+var img = document.createElement('img')
+img.src = 'http://placehold.jp/64x64.png'
+img.classList.add('figure-img', 'img-fluid', 'rounded', 'img-thumbnail')
+
+figure.appendChild(img)
+div_figure.appendChild(figure)
+article.appendChild(div_figure)
+
+var div_body = document.createElement('div')
+div_body.classList.add('media-body', 'px-3')
+div_body.innerHTML = '<h5 class="mt-0"><%= @book.title %></h5>'
+div_body.innerHTML += '<strong class="mt-0">Author: <%= @book.authors_name %></strong>'
+
+var div_small = document.createElement('div')
+div_small.classList.add('d-flex', 'justify-content-between')
+div_small.innerHTML = '<small>Publisher: <%= @book.publishers_name %></small>'
+div_small.innerHTML += '<small>Genre: <%= @book.genre %></small>'
+
+div_body.appendChild(div_small)
+article.appendChild(div_body)
+
+div_book.appendChild(article)
+
+var div_buttons = document.createElement('div')
+div_buttons.classList.add('icon-link', 'd-flex', 'justify-content-end')
+var buttons = '<%= j render "buttons_links", book: @book %>'
+
+div_buttons.innerHTML = buttons
+div_book.appendChild(div_buttons)
+
+div.appendChild(div_book)
+
+var input_title = document.querySelector('[name="book[title]"]')
+input_title.value = ''
+
+var input_isbn = document.querySelector('[name="book[title]"]')
+input_isbn.value = ''
+
+var select_author_input = document.querySelector('[name="book[author_id]"]')
+select_author_input.selectedIndex = -1
+
+var select_publisher_input = document.querySelector('[name="book[publisher_id]"]')
+select_publisher_input.selectedIndex = -1
+
+var select_language_input = document.querySelector('[name="book[language]"]')
+select_language_input.selectedIndex = -1
+
+var select_genre_input = document.querySelector('[name="book[genre]"]')
+select_genre_input.selectedIndex = -1
+
+var input_description = document.querySelector('[name="book[description]"]')
+input_description.value = ''

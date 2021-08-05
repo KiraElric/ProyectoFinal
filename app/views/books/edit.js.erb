@@ -1,0 +1,11 @@
+var remove_divs = document.querySelectorAll('.book_detail__content')
+remove_divs.forEach((d) => d.parentNode.removeChild(d))
+
+var book_detail = document.querySelector('[data-id="<%= @book.id %>"]')
+book_detail.classList.add('show')
+
+var div = document.createElement('div')
+div.classList.add('book_detail__content')
+div.innerHTML = '<%= j render "form", book: @book %>'
+
+book_detail.appendChild(div)

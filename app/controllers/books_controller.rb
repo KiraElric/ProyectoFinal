@@ -11,6 +11,9 @@ class BooksController < ApplicationController
 
   # GET /books/1 or /books/1.json
   def show
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /books/new
@@ -20,6 +23,9 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /books or /books.json
@@ -30,6 +36,7 @@ class BooksController < ApplicationController
       if @book.save
         format.html { redirect_to @book, notice: "Book was successfully created." }
         format.json { render :show, status: :created, location: @book }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @book.errors, status: :unprocessable_entity }
@@ -43,6 +50,7 @@ class BooksController < ApplicationController
       if @book.update(book_params)
         format.html { redirect_to @book, notice: "Book was successfully updated." }
         format.json { render :show, status: :ok, location: @book }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @book.errors, status: :unprocessable_entity }
@@ -56,6 +64,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
