@@ -4,6 +4,8 @@ class Book < ApplicationRecord
 
   validates :title, :isbn, presence: true
 
+  paginates_per 25
+
   enum language: [ :spanish, :english, :german, :french, :greek, 
                    :persian, :dutch, :italian, :japanese, :chinese]
   enum genre: [ :fiction, :adventure, :biography, :fantasy, :science, 

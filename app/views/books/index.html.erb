@@ -7,8 +7,11 @@
       </section>
       <section class="my-1" id="bookList">
         <%= render 'book', book: @book %>
+        <div class="d-flex justify-content-end my-2">
+          <%= link_to_previous_page @books, 'Prev Page', class: "text-decoration-none text-light btn btn-info btn-lg" %>
+          <%= link_to_next_page @books, 'Next Page', class: "text-decoration-none btn btn-info btn-lg text-light" %>
+        </div>
       </section>
-      <br>
     </div>
   </div>
 </div>
