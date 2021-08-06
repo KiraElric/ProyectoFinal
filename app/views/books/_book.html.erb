@@ -16,9 +16,7 @@
       </div>
     </article>
     <div class="icon-link d-flex justify-content-end">
-      <% if current_user.admin? %>
-        <%= render 'books/buttons_links', book: book %>
-      <% end %>
+      <%= render 'books/buttons_links', book: book %>
     </div>
   </div>
 <% end %>

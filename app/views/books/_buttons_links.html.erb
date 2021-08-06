@@ -4,14 +4,27 @@
       <span class="icon"><i class="fas fa-book-open"></i></span>
     <% end %>
   </li>
-  <li class="list-group-item list-inline-item">
-    <%= link_to edit_book_path(book), class: "text-decoration-none text-reset", remote: true do %>
-      <span class="icon"><i class="fas fa-edit"></i></span>
-    <% end %>
-  </li>
-  <li class="list-group-item list-inline-item">
-    <%= link_to book, class: "text-decoration-none text-reset", method: :delete, data: { confirm: 'Are you sure you want to delete this book?', remote: true } do %>
-      <span class="icon"><i class="fas fa-trash"></i></span>
-    <% end %>
-  </li>
+  <% if current_user.admin? %>
+    <li class="list-group-item list-inline-item">
+      <%= link_to edit_book_path(book), class: "text-decoration-none text-reset", remote: true do %>
+        <span class="icon"><i class="fas fa-edit"></i></span>
+      <% end %>
+    </li>
+    <li class="list-group-item list-inline-item">
+      <%= link_to book, class: "text-decoration-none text-reset", method: :delete, data: { confirm: 'Are you sure you want to delete this book?', remote: true } do %>
+        <span class="icon"><i class="fas fa-trash"></i></span>
+      <% end %>
+    </li>
+  <% else %>
+    <li class="list-group-item list-inline-item">
+      <%= link_to root_path, class: "text-decoration-none text-reset", remote: true do %>
+        <span class="icon"><i class="far fa-plus-square"></i></span>
+      <% end %>
+    </li>
+    <li class="list-group-item list-inline-item">
+      <%= link_to root_path, class: "text-decoration-none text-reset", method: :delete, data: { confirm: 'Are you sure you want to trade this book?', remote: true } do %>
+        <span class="icon"><i class="fas fa-exchange-alt"></i></span>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
