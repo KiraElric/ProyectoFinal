@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :book_collections
   resources :books
   devise_for :users, controllers: {
     registrations: 'users/registrations'

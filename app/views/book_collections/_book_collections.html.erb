@@ -1,0 +1,23 @@
+<% @book_collections.each do |book_collection| %>
+  <div class="col-12 border border-secondary rounded py-2" data-id="<%= book_collection.id %>">
+    <article class="media">
+      <div class="align-self-start">
+        <figure class="figure">
+          <img src="http://placehold.jp/64x64.png" class="figure-img img-fluid rounded img-thumbnail" alt="...">
+        </figure>
+      </div>
+      <div class="media-body px-3">
+        <h5 class="mt-0"><%= book_collection.book_title %></h5>       
+        <strong class="mt-0">Author: <%= book_collection.book_author %></strong>
+        <div class="publisher d-flex justify-content-between">
+          <small>Publisher: <%= book_collection.book_publisher %></small>
+          <small>Genre: <%= book_collection.book_genre %></small>
+          <small>State: <%= book_collection.state %></small>
+        </div>
+      </div>
+    </article>
+    <div class="icon-link d-flex justify-content-end">
+      <%= render 'book_collections/buttons_links', book_collection: book_collection %>
+    </div>
+  </div>
+<% end %>

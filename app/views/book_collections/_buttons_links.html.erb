@@ -1,0 +1,24 @@
+<ul class="list-group list-group-horizontal list-unstyled list-inline">
+  <% if book_collection.state == 'read' %>
+    <li class="list-group-item list-inline-item">
+      <%= link_to root_path, class: "text-decoration-none text-reset" do %>
+        <span class="icon"><i class="fas fa-star"></i></i></span>
+      <% end %>
+    </li>
+  <% end %>
+  <li class="list-group-item list-inline-item">
+    <%= link_to book_collection, class: "text-decoration-none text-reset" do %>
+      <span class="icon"><i class="fas fa-book-open"></i></span>
+    <% end %>
+  </li>
+  <li class="list-group-item list-inline-item">
+    <%= link_to edit_book_collection_path(book_collection), class: "text-decoration-none text-reset" do %>
+      <span class="icon"><i class="fas fa-edit"></i></span>
+    <% end %>
+  </li>
+  <li class="list-group-item list-inline-item">
+    <%= link_to book_collection, class: "text-decoration-none text-reset", method: :delete, data: { confirm: 'Are you sure you want to delete this book from your collection?' } do %>
+      <span class="icon"><i class="fas fa-trash"></i></span>
+    <% end %>
+  </li>
+</ul>

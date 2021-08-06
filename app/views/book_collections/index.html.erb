@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <h1 class="text-center font-weight-bold">My Book Collections</h1>
+  <div class="row">
+    <div class="col-lg-4">
+      <section class="my-1">
+        <%= render 'home/profile' %>
+      </section>
+    </div>
+    <div class="col-lg-8 mx-auto">
+      <section class="border text-justify">
+        <%= render 'form', book_collection: @book_collection %>
+      </section>
+      <section class="my-1" id="bookList">
+        <%= render 'book_collections', book_collection: @book_collection %>
+        <div class="d-flex justify-content-end my-2">
+          <%= link_to_previous_page @book_collections, 'Prev Page', class: "text-decoration-none text-light btn btn-info btn-lg" %>
+          <%= link_to_next_page @book_collections, 'Next Page', class: "text-decoration-none btn btn-info btn-lg text-light" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,11 @@
   <h1 class="text-center font-weight-bold">Books</h1>
   <div class="row">
     <div class="col-lg-10 mx-auto">
-      <section class="border text-justify">
-        <%= render 'form', book: @book %>
-      </section>
+      <% if current_user.admin? %>
+        <section class="border text-justify">
+          <%= render 'form', book: @book %>
+        </section>
+      <% end %>
       <section class="my-1" id="bookList">
         <%= render 'book', book: @book %>
         <div class="d-flex justify-content-end my-2">

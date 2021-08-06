@@ -1,4 +1,4 @@
-// Place all the styles related to the books controller here.
+// Place all the styles related to the bookCollections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -10,10 +10,6 @@
   color: rgb(22, 22, 223);
 }
 
-.fa-plus-square {
-  color: teal;
-}
-
-.fa-exchange-alt {
-  color: purple;
+.fa-star {
+  color: rgb(230, 230, 30);
 }
