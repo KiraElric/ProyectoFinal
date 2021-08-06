@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Book Collections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Owned</th>
+      <th>Book</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @book_collections.each do |book_collection| %>
+      <tr>
+        <td><%= book_collection.state %></td>
+        <td><%= book_collection.owned %></td>
+        <td><%= book_collection.book_id %></td>
+        <td><%= book_collection.user_id %></td>
+        <td><%= link_to 'Show', book_collection %></td>
+        <td><%= link_to 'Edit', edit_book_collection_path(book_collection) %></td>
+        <td><%= link_to 'Destroy', book_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Book Collection', new_book_collection_path %>

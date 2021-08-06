@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :author
   belongs_to :publisher
+  has_many :book_collections
 
   validates :title, :isbn, presence: true
 
