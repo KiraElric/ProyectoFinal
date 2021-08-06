@@ -1,11 +1,12 @@
 class BookCollectionsController < ApplicationController
   before_action :set_book_collection, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :set_books, :set_states, only: %i[ new edit ]
+  before_action :set_books, :set_states, only: %i[ index new edit ]
 
   # GET /book_collections or /book_collections.json
   def index
-    @book_collections = BookCollection.all
+    @book_collections = current_user.book_collections.page(params[:page])
+    @book_collection = current_user.book_collections.build
   end
 
   # GET /book_collections/1 or /book_collections/1.json
@@ -26,14 +27,20 @@ class BookCollectionsController < ApplicationController
     @book_collection = current_user.book_collections.build(book_collection_params)
 
     respond_to do |format|
-      if @book_collection.save
-        format.html { redirect_to @book_collection, notice: "Book collection was successfully created." }
-        format.json { render :show, status: :created, location: @book_collection }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+      begin
+        if @book_collection.save
+          format.html { redirect_to @book_collection, notice: "Book collection was successfully created." }
+          format.json { render :show, status: :created, location: @book_collection }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @book_collection.errors, status: :unprocessable_entity }
+        end
+      rescue ActiveRecord::RecordNotUnique
+        format.html { redirect_to @book_collection, status: :unprocessable_entity }
         format.json { render json: @book_collection.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /book_collections/1 or /book_collections/1.json

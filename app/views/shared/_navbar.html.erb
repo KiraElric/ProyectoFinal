@@ -14,10 +14,14 @@
       <ul class="navbar-nav list-unstyled font-weight-light">
         <% if user_signed_in? %>
           <li class="nav-item mx-3">
+            <%= link_to 'Dashboard', root_path, class: "text-decoration-none text-reset" %>
+          </li>
+          <li class="nav-item mx-3">
+            <%= link_to 'My Collections', book_collections_path, class: "text-decoration-none text-reset" %>
+          </li>
+          <li class="nav-item mx-3">
             <%= link_to 'My Account', edit_user_registration_path, class: "text-decoration-none text-reset" %>
           </li>
-          <%# My Collection %>
-          <%# My Trades %>
           <li class="nav-item">
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "text-decoration-none text-reset" %>
           </li>
