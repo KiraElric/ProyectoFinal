@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :set_genres, :set_languages, :set_publishers, only: %i[ index new edit ]
   before_action :set_authors, only: %i[ index new edit ]
+  before_action :authenticate_user!
 
   # GET /books or /books.json
   def index
@@ -18,14 +19,14 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
-    @book = Book.new
+      @book = Book.new
   end
 
   # GET /books/1/edit
   def edit
-    respond_to do |format|
-      format.js
-    end
+      respond_to do |format|
+        format.js
+      end
   end
 
   # POST /books or /books.json
