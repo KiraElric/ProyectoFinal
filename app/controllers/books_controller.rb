@@ -2,12 +2,18 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
   before_action :set_genres, :set_languages, :set_publishers, only: %i[ index new edit ]
   before_action :set_authors, only: %i[ index new edit ]
-  before_action :authenticate_user!
 
   # GET /books or /books.json
   def index
-    @books = Book.all.page(params[:page])
-    @book = Book.new
+    @q = Book.ransack(params[:q])
+    if user_signed_in?
+      @books = (@q.result(distinct: true)).order('created_at DESC').page(params[:page])
+      if current_user.admin?
+        @book = Book.new
+      end
+    else
+      @books = (@q.result(distinct: true)).order('title DESC').all.page(params[:page])
+    end
   end
 
   # GET /books/1 or /books/1.json

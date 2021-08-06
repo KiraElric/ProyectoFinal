@@ -21,4 +21,8 @@ class BookCollection < ApplicationRecord
   def book_genre
     self.book.genre
   end
+
+  def book_description
+    self.book.description
+  end
 end
