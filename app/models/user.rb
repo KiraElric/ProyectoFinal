@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :book_collections
+  has_many :appraisals
+  
   validates :name, :lastname, presence: true
 
   def fullname

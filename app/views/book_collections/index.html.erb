@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
   <h1 class="text-center font-weight-bold">My Book Collections</h1>
   <div class="row">
@@ -20,7 +18,7 @@
       <section class="border text-justify">
         <%= render 'form', book_collection: @book_collection %>
       </section>
-      <section class="my-1" id="bookList">
+      <section class="my-1">
         <%= render 'book_collections', book_collection: @book_collection %>
         <div class="d-flex justify-content-end my-2">
           <%= link_to_previous_page @book_collections, 'Prev Page', class: "text-decoration-none text-light btn btn-info btn-lg" %>

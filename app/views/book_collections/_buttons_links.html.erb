@@ -1,7 +1,7 @@
 <ul class="list-group list-group-horizontal list-unstyled list-inline">
   <% if book_collection.state == 'read' %>
     <li class="list-group-item list-inline-item">
-      <%= link_to root_path, class: "text-decoration-none text-reset" do %>
+      <%= link_to new_book_appraisal_path(book_collection.book), class: "text-decoration-none text-reset" do %>
         <span class="icon"><i class="fas fa-star"></i></i></span>
       <% end %>
     </li>

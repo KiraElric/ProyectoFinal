@@ -6,18 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-users = [[email: 'lissette.urso@example.com', password: '123456', name: 'Lissette', lastname: 'Urso', phone: '951796426', admin: true],
-          [email: 'pepa@example.com', password: '123456', name: 'Pepa', lastname: 'Urso', phone: '965235443', admin: false],
-          [email: 'nova@example.com', password: '123456', name: 'Nova', lastname: 'Vivallos', phone: '954673456', admin: false]]
+names = ['Lissette', 'Pepa', 'Nova', 'Gustavo']
+lastnames = ['Urso', 'Kat', 'Kitty', 'Vivallos']
+admin = [true, false, false, false]
 
 puts "Creando Usuarios"
-users.each do |user|
-  current_user = User.create(email: user[:email], 
-                            password: user[:password],
-                            name: user[:name],
-                            lastname: user[:lastname],
-                            phone: user[:phone],
-                            admin: user[:admin])
+4.times do |i|
+  current_user = User.create(name: names[i],
+                            lastname: lastnames[i],
+                            phone: 945674325,
+                            email: "#{names[i].downcase}@example.com", 
+                            password: '123456',
+                            admin: admin[i])
   
   puts "Se ha creado el usuario #{current_user.name} #{current_user.lastname}"
 end
@@ -52,9 +52,26 @@ puts "Creando Libros"
 end
 
 # puts "Creando Book Collections"
-# 50.times do |i|
-#   book_collection = BookCollection.create(user_id:,
-#                                           book_id:,
-#                                           state:,
-#                                           owned:)
+# 4.times do |i|
+#   id = 1
+#   50.times do |j|
+#     state = rand(0..3)
+#     book_id = j+1
+#     book_collection = BookCollection.create(state: state,
+#                                             owned: (state != 3? true : false),
+#                                             book_id: book_id,
+#                                             user_id: id)
+
+#     if state == 2
+#       puts "Creando apreciación de un libro"
+#       3.times do |i|
+#         appraisal = Appraisal.create(review: Faker::Books::Lovecraft.paragraph,
+#                                   score: rand(0..4),
+#                                   user_id: id,
+#                                   book_id: book_id)
+#       end
+#     end
+#     book_id += 1
+#   end
+#   id += 1
 # end

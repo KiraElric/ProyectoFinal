@@ -13,6 +13,7 @@ div.innerHTML += '<p><strong>Author: </strong><%= @book.authors_name %></p>'
 div.innerHTML += '<p><strong>Publisher: </strong><%= @book.publishers_name %></p>'
 div.innerHTML += '<p><strong>Language: </strong><%= @book.language.capitalize %></p>'
 div.innerHTML += '<p><strong>Genre: </strong><%= @book.genre.capitalize %></p>'
+div.innerHTML += '<p><strong>Average Users Score: </strong><%= @book.average_score %></p>'
 div.innerHTML += '<p><strong>Description: </strong><%= @book.description %></p>'
 
 book_detail.appendChild(div)

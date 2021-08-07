@@ -1,0 +1,29 @@
+<div class="col-lg-12 py-2">
+  <%= form_with(model: [@book, appraisal]) do |form| %>
+    <% if appraisal.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(appraisal.errors.count, "error") %> prohibited this appraisal from being saved:</h2>
+
+        <ul>
+          <% appraisal.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :review, "Book's review", class: 'h5 font-weight-light' %>
+      <%= form.text_area :review, size: '60x6', class: 'rounded', placeholder: 'Write a new review...' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :score, "Book's Score", class: 'h5 font-weight-light' %>
+      <%= form.select :score, @scores, include_blank: true%>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Save", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
