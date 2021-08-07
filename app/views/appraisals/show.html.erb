@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-lg-8 border">
+      <h5 class="h3 text-center font-weight-bold p-2"><%= @appraisal.book %></h5>
+      <strong>Score:</strong> <%= @appraisal.score %>
+      <div class="p-2">
+        <p class="text-justify"><%= @appraisal.review %></p>
+      </div>
+      <div class="publisher d-flex justify-content-end my-1">
+        <%= link_to 'Edit', edit_book_appraisal_path(@book, @appraisal), class: "text-decoration-none text-white btn btn-info mr-1" %> |
+        <%= link_to 'Back', root_path, class: "text-decoration-none text-white btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

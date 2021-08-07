@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appraisals.each do |appraisal| %>
+      <tr>
+        <td><%= appraisal.book %></td>
+        <td><%= appraisal.score %></td>
+        <td><%= link_to 'Show', [@book, appraisal] %></td>
+        <td><%= link_to 'Edit', edit_book_appraisal_path(@book, appraisal) %></td>
+        <td><%= link_to 'Destroy', [@book, appraisal], method: :delete, data: { confirm: 'Are you sure you want to delete the appraisal of this book?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

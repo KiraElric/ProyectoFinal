@@ -31,7 +31,7 @@ class BookCollectionsController < ApplicationController
     respond_to do |format|
       begin
         if @book_collection.save
-          format.html { redirect_to @book_collection, notice: "Book collection was successfully created." }
+          format.html { redirect_to book_collection_path, notice: "Book collection was successfully created." }
           format.json { render :show, status: :created, location: @book_collection }
         else
           format.html { render :new, status: :unprocessable_entity }

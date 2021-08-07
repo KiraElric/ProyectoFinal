@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="text-center font-weight-bold">My Book's Appraisals</h1>
+  <div class="row">
+    <div class="col-lg-4">
+      <section class="my-1">
+        <%= render 'devise/profile' %>
+      </section>
+    </div>
+    <div class="col-lg-8 mx-auto">
+      <section class="my-1">
+        <%= render 'appraisals', appraisals: @appraisal %>
+        <div class="d-flex justify-content-end my-2">
+          <%= link_to 'New Appraisal', new_book_appraisal_path(@book), class: "text-decoration-none text-light btn btn-info btn-lg" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+

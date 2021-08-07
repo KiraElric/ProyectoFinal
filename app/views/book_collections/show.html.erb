@@ -24,6 +24,21 @@
           <div class="p-2">
             <p class="text-justify"><%= @book_collection.book_description %></p>
           </div>
+          <% if @book_collection.book.appraisals.present? %>
+            <br>
+            <div>
+              <ul class="list-group ">
+                <li class="list-group-item"><strong>Score: </strong> <%= @book_collection.book.user_average_score %></li>
+              </ul>
+            </div>
+            <hr>
+            <div class="p-2">
+              <% @book_collection.book.appraisals.each do |appraisal| %>
+                <p class="text-justify"><%= appraisal.review %></p>
+                <hr>
+              <% end %>
+            </div>
+          <% end %>
           <div class="publisher d-flex justify-content-end my-1">
             <%= link_to 'Edit', edit_book_collection_path(@book_collection), class: "text-decoration-none text-white btn btn-info mr-1" %>
             <%= link_to 'Back', book_collections_path, class: "text-decoration-none text-white btn btn-danger" %>
