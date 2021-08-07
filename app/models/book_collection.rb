@@ -2,6 +2,8 @@ class BookCollection < ApplicationRecord
   belongs_to :book
   belongs_to :user
 
+  scope :books_genres, ->(current_user) { joins(:book, :user).select('books.genre', 'book_collections.id', 'books.title').where("user_id=?", current_user.id).group('books.genre').count('book_collections.id') }
+
   paginates_per 25
 
   enum state: [ :want_to_read, :reading, :read, :trade ]

@@ -7,6 +7,8 @@ class BookCollectionsController < ApplicationController
   def index
     @book_collections = current_user.book_collections.page(params[:page])
     @book_collection = current_user.book_collections.build
+    @book_collection_group_states = BookCollection.group(:state).count
+    @book_collection_group_genres = BookCollection.books_genres(current_user).transform_keys{ |key| Book.genres.keys[key] }
   end
 
   # GET /book_collections/1 or /book_collections/1.json

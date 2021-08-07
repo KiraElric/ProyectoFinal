@@ -7,6 +7,14 @@
       <section class="my-1">
         <%= render 'devise/profile' %>
       </section>
+      <section class="my-2 border">
+        <h3 class="h3 text-center font-weight-bold">States of my book collections</h3>
+        <%= pie_chart @book_collection_group_states, legend: "bottom" %>
+      </section>
+      <section class="border">
+        <h3 class="h3 text-center font-weight-bold">Genres of my book collections</h3>
+        <%= pie_chart @book_collection_group_genres, legend: "bottom" %>
+      </section>
     </div>
     <div class="col-lg-8 mx-auto">
       <section class="border text-justify">
