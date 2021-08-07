@@ -6,7 +6,7 @@ class BookCollection < ApplicationRecord
 
   paginates_per 25
 
-  enum state: [ :want_to_read, :reading, :read, :trade ]
+  enum state: [ :want_to_read, :reading, :read, :exchanged ]
 
   def book_title
     self.book.title

@@ -2,10 +2,11 @@ class BookCollectionsController < ApplicationController
   before_action :set_book_collection, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :set_books, :set_states, only: %i[ index new edit ]
+  before_action :add_collection_params, only: %i[ add ]
 
   # GET /book_collections or /book_collections.json
   def index
-    @book_collections = current_user.book_collections.page(params[:page])
+    @book_collections = current_user.book_collections.order('created_at DESC').page(params[:page])
     @book_collection = current_user.book_collections.build
     @book_collection_group_states = BookCollection.group(:state).count
     @book_collection_group_genres = BookCollection.books_genres(current_user).transform_keys{ |key| Book.genres.keys[key] }
@@ -31,7 +32,7 @@ class BookCollectionsController < ApplicationController
     respond_to do |format|
       begin
         if @book_collection.save
-          format.html { redirect_to book_collection_path, notice: "Book collection was successfully created." }
+          format.html { redirect_to book_collections_path, notice: "Book collection was successfully created." }
           format.json { render :show, status: :created, location: @book_collection }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -67,6 +68,29 @@ class BookCollectionsController < ApplicationController
     end
   end
 
+  def add
+    @book = Book.find(params[:book_id])
+    user = current_user
+    @book_collection = BookCollection.new
+    @book_collection.user_id = user.id
+    @book_collection.book_id = @book.id
+        
+    respond_to do |format|
+      begin
+        if @book_collection.save
+          format.html { redirect_to book_collections_path, notice: "Book collection was successfully created." }
+          format.json { render :show, status: :created, location: @book_collection }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @book_collection.errors, status: :unprocessable_entity }
+        end
+      rescue ActiveRecord::RecordNotUnique
+        format.html { redirect_to @book_collection, status: :unprocessable_entity }
+        format.json { render json: @book_collection.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book_collection
@@ -79,6 +103,10 @@ class BookCollectionsController < ApplicationController
 
     def set_states
       @states = BookCollection.states.keys
+    end
+
+    def add_collection_params
+      params.permit(:book_id)
     end
 
     # Only allow a list of trusted parameters through.
