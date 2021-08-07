@@ -1,6 +1,15 @@
-<h1>Editing Book Collection</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 mx-auto">
+      <h1 class="h2 text-center font-weight-bold">Editing Book Collection</h1>
+      <div class="col-lg-8 mx-auto border">
+        <%= render 'form', book_collection: @book_collection %>
+      </div>
+      <div class="d-flex justify-content-end my-2">
+        <%= link_to 'Show', @book_collection, class: "text-decoration-none text-white btn btn-info mr-1"%>
+        <%= link_to 'Back', book_collections_path, class: "text-decoration-none text-white btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', book_collection: @book_collection %>
-
-<%= link_to 'Show', @book_collection %> |
-<%= link_to 'Back', book_collections_path %>

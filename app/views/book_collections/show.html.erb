@@ -1,24 +1,35 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>State:</strong>
-  <%= @book_collection.state %>
-</p>
-
-<p>
-  <strong>Owned:</strong>
-  <%= @book_collection.owned %>
-</p>
-
-<p>
-  <strong>Book:</strong>
-  <%= @book_collection.book_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @book_collection.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_book_collection_path(@book_collection) %> |
-<%= link_to 'Back', book_collections_path %>
+<div class='container'>
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="d-flex flex-row">
+        <div class="mx-1">
+          <img src="http://placehold.jp/250x250.png" class="img-fluid" alt="book-cover">
+        </div>
+        <div class="col-lg-8 border">
+          <h5 class="h3 text-center font-weight-bold p-2"><%= @book_collection.book_title %></h5>
+          <div>
+            <ul class="list-group ">
+              <li class="list-group-item"><strong>Author:</strong> <%= @book_collection.book_author %></li>
+              <li class="list-group-item"><strong>Publisher:</strong> <%= @book_collection.book_publisher %></li>
+              <li class="list-group-item"><strong>Genre:</strong> <%= @book_collection.book_genre %></li>
+              <li class="list-group-item"><strong>State:</strong> <%= @book_collection.state %></li>
+              <% if @book_collection.owned? %>
+                <li class="list-group-item disabled">Owned</li>
+              <% else %>
+                <li class="list-group-item disabled">Exchanged</li>
+              <% end %>
+            </ul>
+          </div>
+          <hr>
+          <div class="p-2">
+            <p class="text-justify"><%= @book_collection.book_description %></p>
+          </div>
+          <div class="publisher d-flex justify-content-end my-1">
+            <%= link_to 'Edit', edit_book_collection_path(@book_collection), class: "text-decoration-none text-white btn btn-info mr-1" %>
+            <%= link_to 'Back', book_collections_path, class: "text-decoration-none text-white btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

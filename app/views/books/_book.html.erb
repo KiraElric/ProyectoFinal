@@ -15,9 +15,11 @@
         </div>
       </div>
     </article>
-    <div class="icon-link d-flex justify-content-end">
-      <%= render 'books/buttons_links', book: book %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="icon-link d-flex justify-content-end">
+        <%= render 'books/buttons_links', book: book %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
