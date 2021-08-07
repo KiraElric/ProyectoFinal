@@ -2,7 +2,6 @@ class BookCollectionsController < ApplicationController
   before_action :set_book_collection, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :set_books, :set_states, only: %i[ index new edit ]
-  before_action :add_collection_params, only: %i[ add ]
 
   # GET /book_collections or /book_collections.json
   def index
@@ -103,10 +102,6 @@ class BookCollectionsController < ApplicationController
 
     def set_states
       @states = BookCollection.states.keys
-    end
-
-    def add_collection_params
-      params.permit(:book_id)
     end
 
     # Only allow a list of trusted parameters through.
