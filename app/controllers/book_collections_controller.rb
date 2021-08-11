@@ -7,7 +7,7 @@ class BookCollectionsController < ApplicationController
   def index
     @book_collections = current_user.book_collections.order('created_at DESC').page(params[:page])
     @book_collection = current_user.book_collections.build
-    @book_collection_group_states = BookCollection.group(:state).count
+    @book_collection_group_states = BookCollection.group(:state).user_book(current_user).count
     @book_collection_group_genres = BookCollection.books_genres(current_user).transform_keys{ |key| Book.genres.keys[key] }
   end
 
