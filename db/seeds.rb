@@ -51,27 +51,23 @@ puts "Creando Libros"
   puts "Se ha creado el libro #{book.title}"
 end
 
-# puts "Creando Book Collections"
-# 4.times do |i|
-#   id = 1
-#   50.times do |j|
-#     state = rand(0..3)
-#     book_id = j+1
-#     book_collection = BookCollection.create(state: state,
-#                                             owned: (state != 3? true : false),
-#                                             book_id: book_id,
-#                                             user_id: id)
+puts "Creando Book Collections"
+4.times do |i|
+  50.times do |j|
+    state = rand(0..3)
+    book_collection = BookCollection.create(state: state,
+                                            owned: (state != 3? true : false),
+                                            book_id: (j+1),
+                                            user_id: (i+1))
 
-#     if state == 2
-#       puts "Creando apreciación de un libro"
-#       3.times do |i|
-#         appraisal = Appraisal.create(review: Faker::Books::Lovecraft.paragraph,
-#                                   score: rand(0..4),
-#                                   user_id: id,
-#                                   book_id: book_id)
-#       end
-#     end
-#     book_id += 1
-#   end
-#   id += 1
-# end
+    if book_collection.state == :read
+      puts "Creando apreciación de un libro"
+      appraisal = Appraisal.create(review: Faker::Books::Lovecraft.paragraph,
+                                  score: rand(0..4),
+                                  user_id: (i+1),
+                                  book_id: (j+1))
+      end
+    end
+
+  end
+end
