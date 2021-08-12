@@ -8,7 +8,6 @@ class Book < ApplicationRecord
 
   paginates_per 25
 
-  scope :user, ->(current_user) { where("user_id=?", current_user.id) }
 
   enum language: [ :spanish, :english, :german, :french, :greek, 
                    :persian, :dutch, :italian, :japanese, :chinese]
@@ -17,14 +16,6 @@ class Book < ApplicationRecord
   
   def to_s
     title
-  end
-
-  def user_appraisals_count
-    self.appraisals.user(current_user).count
-  end
-
-  def user_average_score
-    self.appraisals.user(current_user).sum(:score)/self.user_appraisals_count
   end
 
   def appraisals_count

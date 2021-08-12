@@ -66,7 +66,6 @@ puts "Creando Book Collections"
                                   score: rand(0..4),
                                   user_id: (i+1),
                                   book_id: (j+1))
-      end
     end
 
   end
