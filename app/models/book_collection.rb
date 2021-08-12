@@ -2,6 +2,8 @@ class BookCollection < ApplicationRecord
   belongs_to :book
   belongs_to :user
 
+  before_save :owned_book
+
   scope :books_genres, ->(current_user) { joins(:book, :user).select('books.genre', 'book_collections.id', 'books.title').where("user_id=?", current_user.id).group('books.genre').count('book_collections.id') }
   scope :user_book, ->(current_user) {where("user_id=?", current_user.id )}
 
@@ -9,7 +11,7 @@ class BookCollection < ApplicationRecord
 
   enum state: [ :want_to_read, :reading, :read, :exchanged ]
 
-  before_save do
+  def owned_book
     if self.state == :exchanged
       self.owned = false
     end
