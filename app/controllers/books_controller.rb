@@ -12,7 +12,7 @@ class BooksController < ApplicationController
         @book = Book.new
       end
     else
-      @books = (@q.result(distinct: true)).order('title DESC').all.page(params[:page])
+      @books = (@q.result(distinct: true)).order('created_at DESC').all.page(params[:page])
     end
   end
 
